@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { getData } from '../thunkSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePeriodHandler } from '../thunkSlice';
+import { timeConverter } from '../utils/auxiliary';
 
 export default function Oneminute({sortype}) {
 
   const [sorted, setSort] = useState([])
   const allperiods = useSelector(state => state.thunk.unitetime)
-  const dispatch = useDispatch()
-
-
-  let currentDate = new Date()
-  const dataRequest = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
-
-
-  useEffect(()=>{
-    dispatch(getData(changePeriodHandler('30',`${dataRequest}`,`${dataRequest}`)))
-  }, [dispatch])
 
   useEffect(() => {
     if(allperiods.minute)
@@ -56,18 +45,6 @@ export default function Oneminute({sortype}) {
       }
     }
   }, [sortype])
-
-  console.log(sorted)
-
-  const timeConverter = (time) => {
-    const isoDate = time;
-    const date = new Date(isoDate);
-    return date.toLocaleString('en-US', { 
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-    }
 
   return (
     <>

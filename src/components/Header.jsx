@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getData } from '../thunkSlice';
+import { getMinutes, getFiveMinutes, getHour, getMinute, getWeek } from '../thunkSlice';
 import { messageReceived} from '../headerSlice';
 import Arrow from './Arrow';
 import Schedule from './Schedule';
 import Table from './Table';
 import { changePeriodHandler } from '../thunkSlice';
+import { timeConverterHeader } from '../utils/auxiliary';
 
 export default function Header() {
 
@@ -13,6 +14,16 @@ export default function Header() {
 
   const data = useSelector(state => state.socket.data)
   const dispatch = useDispatch()
+
+
+  let currentDate = new Date()
+
+  const Request = `${currentDate.getMonth()+1}/${currentDate.getDate()-1}/${currentDate.getFullYear()}`
+  const RequestFiveMinutes = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
+  const RequestHour = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
+  const RequestWeek = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
+
+
 
   useEffect(()=>{
     const socket = new WebSocket('wss://wstest.fxempire.com?token=btctothemoon');
@@ -23,22 +34,13 @@ export default function Header() {
       socket.onmessage = (event) => {
         const inner = JSON.parse(event.data)["s-aapl"]
         dispatch(messageReceived(inner))
+        dispatch(getMinute(changePeriodHandler('30',`${Request}`,`${Request}`)))
+        dispatch(getFiveMinutes(changePeriodHandler('30',`${Request}`,`${Request}`)))
+        dispatch(getHour(changePeriodHandler('30',`${RequestHour}`,`${RequestHour}`)))
+        dispatch(getWeek(changePeriodHandler('5',`${RequestWeek}`,`${RequestWeek}`)))
       };   
-  }, [])
+  }, [dispatch])
 
-const timeConverter = () => {
-const isoDate = data.lastUpdate;
-const date = new Date(isoDate);
-return date.toLocaleString('en-US', { 
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-  timeZoneName: 'short',
-  timeZone: 'UTC' 
-});
-}
 
 const historyHandler = () => {
   setTab(true)
@@ -55,7 +57,7 @@ const overviewHandler = () => {
         <p className={'stockname'}>
           Apple Inc
         </p>
-        <p className={'uptodate'}>As of: {timeConverter()}</p>
+        <p className={'uptodate'}>As of: {timeConverterHeader(data)}</p>
         </div>
 
         <div className={'actual'}>

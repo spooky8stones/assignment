@@ -2,33 +2,16 @@ import React, { useEffect } from 'react';
 import { getData } from '../thunkSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePeriodHandler } from '../thunkSlice';
+import { timeConverter } from '../utils/auxiliary';
 
 export default function Onehour() {
 
   const allperiods = useSelector(state => state.thunk.unitetime)
   const dispatch = useDispatch()
 
-  let currentDate = new Date()
-  const dataRequest = `${currentDate.getMonth()+1}/${currentDate.getDate()-1}/${currentDate.getFullYear()}`
-  const dataStart = `${currentDate.getMonth()+1}/${currentDate.getDate()-1}/${currentDate.getFullYear()}`
-
-  useEffect(()=>{
-    dispatch(getData(changePeriodHandler('5', dataStart, dataRequest)))
-  }, [])
-  
-  const timeConverter = (time) => {
-    const isoDate = time;
-    const date = new Date(isoDate);
-    return date.toLocaleString('en-US', { 
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-    }
-
   return (
     <>
-    {allperiods.minute && allperiods.minute.map((el) => 
+    {allperiods.hour && allperiods.hour.map((el) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>

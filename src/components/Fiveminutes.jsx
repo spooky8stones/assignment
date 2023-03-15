@@ -2,33 +2,16 @@ import React, { useEffect } from 'react';
 import { getData } from '../thunkSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePeriodHandler } from '../thunkSlice';
+import { timeConverter } from '../utils/auxiliary';
 
 export default function Fiveminutes() {
 
   const allperiods = useSelector(state => state.thunk.unitetime)
   const dispatch = useDispatch()
 
-  let currentDate = new Date()
-  const dataRequest = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
-
-
-  useEffect(()=>{
-    dispatch(getData(changePeriodHandler('30',`${dataRequest}`,`${dataRequest}`)))
-  }, [dispatch])
-
-  const timeConverter = (time) => {
-    const isoDate = time;
-    const date = new Date(isoDate);
-    return date.toLocaleString('en-US', { 
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-    }
-
   return (
     <>
-    {allperiods.minute && allperiods.minute.map((el) => 
+    {allperiods.fiveminutes && allperiods.fiveminutes.map((el) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>
