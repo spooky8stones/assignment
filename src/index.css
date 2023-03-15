@@ -29,6 +29,7 @@ li {
 }
 
 li:hover {
+  cursor: pointer;
   color: #3c6688;
   border-bottom: 1px solid #3c6688;
 }

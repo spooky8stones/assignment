@@ -16,7 +16,7 @@ export const websocketSlice = createSlice({
 
 export const { messageReceived } = websocketSlice.actions;
 
-export default websocketSlice.reducer;
+export const webSocket = websocketSlice.reducer;
 
     
 

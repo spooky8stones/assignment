@@ -1,56 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Oneminute from './Oneminute';
+import Fiveminutes from './Fiveminutes';
+import Onehour from './Onehour';
+import Week from './Week';
 
 export default function Table() {
-
   
+  const [curtab, setCurtab] = useState('minute')
+  const [sortype, setSortype] = useState('')
+
+  let tabData 
+
+  switch (curtab) {
+    case 'minute':
+      tabData = <Oneminute sortype={sortype}/>
+      break;
+      case 'fiveminutes':
+      tabData = <Fiveminutes sortype={sortype}/>
+      break;
+      case 'hour':
+      tabData = <Onehour sortype={sortype}/>
+      break;
+      case 'week':
+      tabData = <Week sortype={sortype}/>
+      break;
+    default:
+      tabData = <Oneminute/>
+      break;
+  }
 
   return (
-    <div>
+    <div style={{width: '95%'}}>
     <ul>
-      <li>1 Minute</li>
-      <li>5 Minutes</li>
-      <li>1 Hour</li>
-      <li>1 Week</li>
+      <li onClick={() => {setCurtab('minute')}}>1 Minute</li>
+      <li onClick={() => {setCurtab('fiveminutes')}}>5 Minutes</li>
+      <li onClick={() => {setCurtab('hour')}}>1 Hour</li>
+      <li onClick={() => {setCurtab('week')}}>1 Week</li>
     </ul>
     <hr style={{width: '95vw', border: 'none', margin: '0'}}/>
-    <div class="container">
-  <table class="table">
-    <thead>
+    <div className="container">
+  <table className="table" style={{border:'1px solid #d1d1d1'}}>
+    <thead style={{backgroundColor:'#f5f5f5'}}>
       <tr>
-        <th class="col">Date</th>
-        <th class="col">High</th>
-        <th class="col">Low</th>
-        <th class="col">Open</th>
-        <th class="col">Close</th>
-        <th class="col">% Change</th>
+        <th onClick={() => {setSortype('date')}} className="col">Date</th>
+        <th onClick={() => {setSortype('high')}} className="col">High</th>
+        <th onClick={() => {setSortype('low')}} className="col">Low</th>
+        <th onClick={() => {setSortype('open')}} className="col">Open</th>
+        <th onClick={() => {setSortype('close')}} className="col">Close</th>
+        <th onClick={() => {setSortype('change')}} className="col">% Change</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="col">Row 1, Column 1</td>
-        <td class="col">Row 1, Column 2</td>
-        <td class="col">Row 1, Column 3</td>
-        <td class="col">Row 1, Column 4</td>
-        <td class="col">Row 1, Column 5</td>
-        <td class="col">Row 1, Column 6</td>
-      </tr>
-      <tr>
-        <td class="col">Row 2, Column 1</td>
-        <td class="col">Row 2, Column 2</td>
-        <td class="col">Row 2, Column 3</td>
-        <td class="col">Row 2, Column 4</td>
-        <td class="col">Row 2, Column 5</td>
-        <td class="col">Row 2, Column 6</td>
-      </tr>
-      <tr>
-        <td class="col">Row 3, Column 1</td>
-        <td class="col">Row 3, Column 2</td>
-        <td class="col">Row 3, Column 3</td>
-        <td class="col">Row 3, Column 4</td>
-        <td class="col">Row 3, Column 5</td>
-        <td class="col">Row 3, Column 6</td>
-      </tr>
+      {tabData}
     </tbody>
   </table>
 </div>

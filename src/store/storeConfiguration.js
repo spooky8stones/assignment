@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { websocketSlice } from '../reducer';
-import { thunkSlice } from '../thunkSlice';
-
+import {webSocket} from '../headerSlice';
+import {timeRequest} from '../thunkSlice';
 
 export const store = configureStore({
-  reducer: {
-    socket: websocketSlice, 
-    thunk: thunkSlice
+  reducer: { 
+    socket: webSocket,
+    thunk: timeRequest
   }
 });
 

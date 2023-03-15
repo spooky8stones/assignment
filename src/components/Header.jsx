@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { messageReceived} from '../reducer';
-import {getMinute, getfiveMinutes ,getHour, getWeek } from '../thunkSlice';
+import { getData } from '../thunkSlice';
+import { messageReceived} from '../headerSlice';
 import Arrow from './Arrow';
 import Schedule from './Schedule';
-import Table from './Table'
+import Table from './Table';
+import { changePeriodHandler } from '../thunkSlice';
 
 export default function Header() {
 
   const [tab, setTab] = useState(true)
 
-  const {reducer: {data: data}} = useSelector(state => state)
-  const {reducer: {minute: minute}} = useSelector(state => state)
+  const data = useSelector(state => state.socket.data)
   const dispatch = useDispatch()
-
-  console.log(minute)
-
 
   useEffect(()=>{
     const socket = new WebSocket('wss://wstest.fxempire.com?token=btctothemoon');
@@ -26,14 +23,8 @@ export default function Header() {
       socket.onmessage = (event) => {
         const inner = JSON.parse(event.data)["s-aapl"]
         dispatch(messageReceived(inner))
-      }; 
-
-      
+      };   
   }, [])
-
-  useEffect(()=>{
-    dispatch(getMinute())
-  }, [dispatch])
 
 const timeConverter = () => {
 const isoDate = data.lastUpdate;
@@ -57,8 +48,6 @@ const overviewHandler = () => {
   setTab(false)
 }
 
-console.log(data)
-
   return (
 <div className={'main'}>
           <div className={'header'}>
@@ -70,10 +59,10 @@ console.log(data)
         </div>
 
         <div className={'actual'}>
-          <div className={'onstock'}>{data.previousClose > data.close ? <Arrow rotate={{transform: 'rotate(180deg)'}} fill={'red'}/> : <Arrow fill={'green'} width={'20%'} height={'20%'}/> }<p style={{marginLeft: '10px', margin: '0', textAlign: 'center'}}>{data.last}</p></div>
+          <div className={'onstock'}>{data.previousClose > data.last ? <Arrow rotate={{transform: 'rotate(180deg)'}} fill={'red'}/> : <Arrow fill={'green'} width={'20%'} height={'20%'}/> }<p style={{marginLeft: '10px', margin: '0', textAlign: 'center'}}>{data.last}</p></div>
         <div className={'changed'}>
-        <span>{data.previousClose > data.close ? '-' : '+' }{data.change}</span>
-        <span>{data.previousClose > data.close ? '-' : '+' }{data.percentChange}</span>
+        <span>{data.previousClose > data.last ? '-' : '+' }{data.change}</span>
+        <span>{data.previousClose > data.last ? '-' : '+' }{data.percentChange}</span>
         </div>
         </div>
         </div>
