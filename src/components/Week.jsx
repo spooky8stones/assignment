@@ -1,12 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { timeConverter, change } from '../utils/auxiliary';
+import { timeConverter, change, sortData } from '../utils/auxiliary';
 
-export default function Week() {
+export default function Week({sortype}) {
 
   const [sorted, setSort] = useState([])
-
   const allperiods = useSelector(state => state.thunk.unitetime)
 
   useEffect(() => {
@@ -18,6 +17,10 @@ export default function Week() {
     });
     setSort(lastHourData)}
   }, [])
+
+  useEffect(() => {
+    sortData(allperiods.minute, sortype, sorted, setSort)
+  }, [sortype, allperiods.week])
 
   return (
     <>

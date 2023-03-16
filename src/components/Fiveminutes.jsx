@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { timeConverter, change } from '../utils/auxiliary';
+import { timeConverter, change, sortData } from '../utils/auxiliary';
 
-export default function Fiveminutes() {
+export default function Fiveminutes({sortype}) {
 
   const allperiods = useSelector(state => state.thunk.unitetime)
+  const [sorted, setSort] = useState([])
+
+  useEffect(() => {
+    if(allperiods.fiveminutes)
+    setSort([...allperiods.fiveminutes])
+  },[allperiods.fiveminutes])
+
+  useEffect(() =>{
+    sortData(allperiods.minute, sortype, sorted, setSort)
+  }, [sortype, allperiods.fiveminutes])
 
   return (
     <>
-    {allperiods.fiveminutes !=0 ? allperiods.fiveminutes.map((el) => 
+    {sorted.length !=0 ? sorted.map((el) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>

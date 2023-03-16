@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { timeConverter, change } from '../utils/auxiliary';
+import { timeConverter, change, sortData } from '../utils/auxiliary';
 
-export default function Onehour() {
+export default function Onehour({sortype}) {
 
   const allperiods = useSelector(state => state.thunk.unitetime)
+  const [sorted, setSort] = useState([])
 
-  console.log(allperiods.week)
+  useEffect(() =>{
+    sortData(allperiods.minute, sortype, sorted, setSort)
+  }, [sortype, allperiods.hour])
 
   return (
     <>
-    {allperiods.hour !=0 ? allperiods.hour.map((el) => 
+    {sorted !=0 ? sorted.map((el) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>
