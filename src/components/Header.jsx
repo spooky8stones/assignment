@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMinutes, getFiveMinutes, getHour, getMinute, getWeek } from '../thunkSlice';
+import { getMinute, getFiveMinutes, getHour, getWeek } from '../thunkSlice';
 import { messageReceived} from '../headerSlice';
 import Arrow from './Arrow';
 import Schedule from './Schedule';
@@ -15,15 +15,13 @@ export default function Header() {
   const data = useSelector(state => state.socket.data)
   const dispatch = useDispatch()
 
+  console.log(data)
+
 
   let currentDate = new Date()
 
-  const Request = `${currentDate.getMonth()+1}/${currentDate.getDate()-1}/${currentDate.getFullYear()}`
-  const RequestFiveMinutes = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
-  const RequestHour = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
-  const RequestWeek = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
-
-
+  const firstRequest = `${currentDate.getMonth()+1}/${currentDate.getDate()-1}/${currentDate.getFullYear()}`
+  const secondRequest = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
 
   useEffect(()=>{
     const socket = new WebSocket('wss://wstest.fxempire.com?token=btctothemoon');
@@ -34,10 +32,10 @@ export default function Header() {
       socket.onmessage = (event) => {
         const inner = JSON.parse(event.data)["s-aapl"]
         dispatch(messageReceived(inner))
-        dispatch(getMinute(changePeriodHandler('30',`${Request}`,`${Request}`)))
-        dispatch(getFiveMinutes(changePeriodHandler('30',`${Request}`,`${Request}`)))
-        dispatch(getHour(changePeriodHandler('30',`${RequestHour}`,`${RequestHour}`)))
-        dispatch(getWeek(changePeriodHandler('5',`${RequestWeek}`,`${RequestWeek}`)))
+        dispatch(getMinute(changePeriodHandler('30',`${firstRequest}`,`${firstRequest}`)))
+        dispatch(getFiveMinutes(changePeriodHandler('30',`${firstRequest}`,`${firstRequest}`)))
+        dispatch(getHour(changePeriodHandler('30',`${secondRequest}`,`${secondRequest}`)))
+        dispatch(getWeek(changePeriodHandler('30',`${secondRequest}`,`${secondRequest}`)))
       };   
   }, [dispatch])
 
@@ -61,10 +59,10 @@ const overviewHandler = () => {
         </div>
 
         <div className={'actual'}>
-          <div className={'onstock'}>{data.previousClose > data.last ? <Arrow rotate={{transform: 'rotate(180deg)'}} fill={'red'}/> : <Arrow fill={'green'} width={'20%'} height={'20%'}/> }<p style={{marginLeft: '10px', margin: '0', textAlign: 'center'}}>{data.last}</p></div>
+          <div className={'onstock'}>{data.previousClose > data.last ? <Arrow rotate={{transform: 'rotate(180deg)'}} fill={'red'}/> : <Arrow fill={'green'} width={'30%'} height={'30%'}/> }<div style={{width: '50%'}}><p style={{marginLeft: '10px', margin: '0', textAlign: 'center'}}>{data.last}</p></div></div>
         <div className={'changed'}>
         <span>{data.previousClose > data.last ? '-' : '+' }{data.change}</span>
-        <span>{data.previousClose > data.last ? '-' : '+' }{data.percentChange}</span>
+        <span>{data.previousClose > data.last ? '-' : '+' }({data.percentChange})</span>
         </div>
         </div>
         </div>

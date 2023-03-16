@@ -46,16 +46,20 @@ export default function Oneminute({sortype}) {
     }
   }, [sortype])
 
+  const change = (el) => {
+    return ((el.Close - el.Open)/el.Close*100).toFixed(2)
+  }
+
   return (
     <>
-    {sorted && sorted.map((el) => 
+    {sorted && sorted.map((el, i) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>
                 <td className="col">{el.Low}</td>
                 <td className="col">{el.Open}</td>
                 <td className="col">{el.Close}</td>
-                <td className="col">{((el.Close - el.Open)/el.Close*100).toFixed(2)}</td>
+                <td className="col" style={change(el) > 0 ? {color: 'green'}: {color: 'red'}}>{change(el)}</td>
               </tr>
       )}
       </>

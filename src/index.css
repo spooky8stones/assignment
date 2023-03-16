@@ -13,16 +13,15 @@ code {
 }
 
 
-ul {
+div ul {
   margin: 0;
-  padding: 0;
   display: flex;
   list-style: none;
 }
 
 li {
   margin-right: 10px;
-  border-bottom: 1px transparent;
+  border-bottom: 1px solid white;
   color: #888;
   padding: 15px;
   font-weight: 600;

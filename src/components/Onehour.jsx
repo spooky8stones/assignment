@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { getData } from '../thunkSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { changePeriodHandler } from '../thunkSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { timeConverter } from '../utils/auxiliary';
 
 export default function Onehour() {
 
   const allperiods = useSelector(state => state.thunk.unitetime)
-  const dispatch = useDispatch()
+
+  console.log(allperiods.week)
 
   return (
     <>
