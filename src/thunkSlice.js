@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { change } from './utils/auxiliary';
 
 export const getMinute = createAsyncThunk(
 'thunk/getMinute',
@@ -46,6 +47,7 @@ const initialState = {
 
 };
 
+
 export const thunkSlice = createSlice({
   name: 'thunk',
   initialState,
@@ -53,15 +55,19 @@ export const thunkSlice = createSlice({
     builder
     .addCase(getMinute.fulfilled, (state, action) => {
         state.unitetime.minute = action.payload
+        state.unitetime.minute = state.unitetime.minute.map((obj) => {return {...obj, calculated: change(obj)}})
     })
     .addCase(getFiveMinutes.fulfilled, (state, action) => {
         state.unitetime.fiveminutes = action.payload
+        state.unitetime.fiveminutes = state.unitetime.fiveminutes.map((obj) => {return {...obj, calculated: change(obj)}})
     })
     .addCase(getHour.fulfilled, (state, action) => {
         state.unitetime.hour = action.payload
+        state.unitetime.hour = state.unitetime.hour.map((obj) => {return {...obj, calculated: change(obj)}})
     })
     .addCase(getWeek.fulfilled, (state, action) => {
         state.unitetime.week = action.payload
+        state.unitetime.week = state.unitetime.week.map((obj) => {return {...obj, calculated: change(obj)}})
     })
 }
 });

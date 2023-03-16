@@ -9,8 +9,7 @@ export default function Onehour({sortype}) {
 
   useEffect(() => {
     if(allperiods.hour){
-    const calculated = [...allperiods.hour].map((obj) => {return {...obj, calculated: change(obj)}})
-    setSort(calculated)
+    setSort([...allperiods.hour])
     }
   },[allperiods.hour])
 

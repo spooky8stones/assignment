@@ -24,8 +24,7 @@ export default function Week({sortype}) {
 
   useEffect(() => {
     if(allperiods.week){
-    const calculated = [...allperiods.week].map((obj) => {return {...obj, calculated: change(obj)}})
-    setSort(calculated)
+    setSort([...allperiods.week])
     }
   },[allperiods.week])
 

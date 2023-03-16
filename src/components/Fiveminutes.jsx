@@ -9,8 +9,7 @@ export default function Fiveminutes({sortype}) {
 
   useEffect(() => {
     if(allperiods.fiveminutes){
-    const calculated = [...allperiods.minute].map((obj) => {return {...obj, calculated: change(obj)}})
-    setSort(calculated)
+    setSort([...allperiods.fiveminutes])
     }
   },[allperiods.fiveminutes])
 
