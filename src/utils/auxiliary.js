@@ -51,7 +51,8 @@ export const sortData = (data, type, state, stateSeter) => {
                   return c2.Close - c1.Close}))
               break;
               case 'change':
-              
+                stateSeter(state.sort((ch1, ch2) =>{
+                  return ch2.Close - ch1.Close}))
               break;
             default:
               

@@ -17,9 +17,6 @@ export default function Shedule() {
 
 
   const pointShedule = []
-  console.log(shedule)
-  console.log(points)
-
 
   useEffect(()=>{
     if(points.minute){

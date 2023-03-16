@@ -15,9 +15,6 @@ export default function Header() {
   const data = useSelector(state => state.socket.data)
   const dispatch = useDispatch()
 
-  console.log(data)
-
-
   let currentDate = new Date()
 
   const firstRequest = `${currentDate.getMonth()+1}/${currentDate.getDate()-1}/${currentDate.getFullYear()}`

@@ -14,8 +14,6 @@ export default function Oneminute({sortype}) {
   }
   },[allperiods.minute])
 
-  console.log(sorted)
-
   useEffect(() =>{
     sortData(allperiods.minute, sortype, sorted, setSort)
   }, [sortype, allperiods.minute])

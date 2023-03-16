@@ -72,3 +72,8 @@
     justify-content: space-around;
 
   }
+
+  thead> tr > th:hover {
+cursor: pointer;
+background-color: #e6e6e6;
+  }

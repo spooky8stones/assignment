@@ -16,7 +16,7 @@ export default function Week({sortype}) {
       return diffInMinutes < 60;
     });
     setSort(lastHourData)}
-  }, [])
+  }, [allperiods.week])
 
   useEffect(() => {
     sortData(allperiods.minute, sortype, sorted, setSort)
