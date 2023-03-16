@@ -21,3 +21,7 @@ export const timeConverterHeader = (data) => {
           timeZone: 'UTC' 
         });
         }
+
+        export const change = (el) => {
+          return ((el.Close - el.Open)/el.Close*100).toFixed(2)
+        }

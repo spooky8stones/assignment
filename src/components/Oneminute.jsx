@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { timeConverter } from '../utils/auxiliary';
+import { change } from '../utils/auxiliary';
 
 export default function Oneminute({sortype}) {
 
   const [sorted, setSort] = useState([])
   const allperiods = useSelector(state => state.thunk.unitetime)
+
+  console.log(allperiods.minute)
 
   useEffect(() => {
     if(allperiods.minute)
@@ -46,13 +49,9 @@ export default function Oneminute({sortype}) {
     }
   }, [sortype])
 
-  const change = (el) => {
-    return ((el.Close - el.Open)/el.Close*100).toFixed(2)
-  }
-
   return (
     <>
-    {sorted && sorted.map((el, i) => 
+    {sorted.length != 0 ? sorted.map((el, i) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>
@@ -61,7 +60,9 @@ export default function Oneminute({sortype}) {
                 <td className="col">{el.Close}</td>
                 <td className="col" style={change(el) > 0 ? {color: 'green'}: {color: 'red'}}>{change(el)}</td>
               </tr>
-      )}
+      ) : <tr><td colSpan={'6'} className={'message'}><p>We are waiting for upcomming data...</p></td></tr>
+      } 
+      
       </>
   )
 }

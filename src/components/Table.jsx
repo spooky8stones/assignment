@@ -4,6 +4,7 @@ import Oneminute from './Oneminute';
 import Fiveminutes from './Fiveminutes';
 import Onehour from './Onehour';
 import Week from './Week';
+import Timemenu from './Timemenu';
 
 export default function Table() {
   
@@ -32,14 +33,8 @@ export default function Table() {
 
   return (
     <div style={{width: '95%'}}>
-    <ul>
-      <li onClick={() => {setCurtab('minute')}}>1 Minute</li>
-      <li onClick={() => {setCurtab('fiveminutes')}}>5 Minutes</li>
-      <li onClick={() => {setCurtab('hour')}}>1 Hour</li>
-      <li onClick={() => {setCurtab('week')}}>1 Week</li>
-    </ul>
-    <hr style={{width: '95vw', border: 'none', margin: '0'}}/>
-    <div className="container">
+    <Timemenu tab={setCurtab}/>
+    <div className="container" style={{padding: '0'}}>
   <table className="table" style={{border:'1px solid #d1d1d1'}}>
     <thead style={{backgroundColor:'#f5f5f5'}}>
       <tr>

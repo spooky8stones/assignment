@@ -59,10 +59,10 @@ const overviewHandler = () => {
         </div>
 
         <div className={'actual'}>
-          <div className={'onstock'}>{data.previousClose > data.last ? <Arrow rotate={{transform: 'rotate(180deg)'}} fill={'red'}/> : <Arrow fill={'green'} width={'30%'} height={'30%'}/> }<div style={{width: '50%'}}><p style={{marginLeft: '10px', margin: '0', textAlign: 'center'}}>{data.last}</p></div></div>
+          <div className={'onstock'}>{data.previousClose > data.last ? <Arrow rotate={{transform: 'rotate(180deg)'}} width={'30%'} height={'30%'} fill={'red'}/> : <Arrow fill={'green'} width={'30%'} height={'30%'}/> }<div style={{width: '50%'}}><p style={{marginLeft: '10px', margin: '0', textAlign: 'center'}}>{data.last}</p></div></div>
         <div className={'changed'}>
-        <span>{data.previousClose > data.last ? '-' : '+' }{data.change}</span>
-        <span>{data.previousClose > data.last ? '-' : '+' }({data.percentChange})</span>
+        <span>{data.previousClose > data.last ? '' : '+' }{data.change}</span>
+        <span>{data.previousClose > data.last ? '' : '+' }({data.percentChange})</span>
         </div>
         </div>
         </div>
