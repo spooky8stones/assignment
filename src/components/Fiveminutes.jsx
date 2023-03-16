@@ -8,8 +8,10 @@ export default function Fiveminutes({sortype}) {
   const [sorted, setSort] = useState([])
 
   useEffect(() => {
-    if(allperiods.fiveminutes)
-    setSort([...allperiods.fiveminutes])
+    if(allperiods.fiveminutes){
+    const calculated = [...allperiods.minute].map((obj) => {return {...obj, calculated: change(obj)}})
+    setSort(calculated)
+    }
   },[allperiods.fiveminutes])
 
   useEffect(() =>{
@@ -25,7 +27,7 @@ export default function Fiveminutes({sortype}) {
                 <td className="col">{el.Low}</td>
                 <td className="col">{el.Open}</td>
                 <td className="col">{el.Close}</td>
-                <td className="col" style={change(el) > 0 ? {color: 'green'}: {color: 'red'}}>{change(el)}</td>
+                <td className="col" style={el.calculated > 0 ? {color: 'green'}: {color: 'red'}}>{el.calculated}</td>
               </tr>
       )  : <tr><td colSpan={'6'} className={'message'}><p>We are waiting for upcomming data...</p></td></tr>}
       </>

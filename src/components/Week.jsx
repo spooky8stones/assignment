@@ -22,6 +22,13 @@ export default function Week({sortype}) {
     sortData(allperiods.minute, sortype, sorted, setSort)
   }, [sortype, allperiods.week])
 
+  useEffect(() => {
+    if(allperiods.week){
+    const calculated = [...allperiods.week].map((obj) => {return {...obj, calculated: change(obj)}})
+    setSort(calculated)
+    }
+  },[allperiods.week])
+
   return (
     <>
     {sorted.length != 0 ? sorted.map((el) => 

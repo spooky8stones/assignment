@@ -10,7 +10,7 @@ export default function Table() {
   
   const [curtab, setCurtab] = useState('minute')
   const [sortype, setSortype] = useState('')
-
+  
   let tabData 
 
   switch (curtab) {
