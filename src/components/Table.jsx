@@ -39,12 +39,12 @@ export default function Table() {
   <table className="table" style={{border:'1px solid #d1d1d1'}}>
     <thead style={{backgroundColor:'#f5f5f5'}}>
       <tr>
-        <th onClick={() => {setSortype('date')}} className="col">Date<img alt='arrow' src={sortArrows} style={{height: '15px', marginLeft: '5px'}}/></th>
-        <th onClick={() => {setSortype('high')}} className="col">High<img alt='arrow' src={sortArrows} style={{height: '15px', marginLeft: '5px'}}/></th>
-        <th onClick={() => {setSortype('low')}} className="col">Low<img alt='arrow' src={sortArrows} style={{height: '15px', marginLeft: '5px'}}/></th>
-        <th onClick={() => {setSortype('open')}} className="col">Open<img alt='arrow' src={sortArrows} style={{height: '15px', marginLeft: '5px'}}/></th>
-        <th onClick={() => {setSortype('close')}} className="col">Close<img alt='arrow' src={sortArrows} style={{height: '15px', marginLeft: '5px'}}/></th>
-        <th onClick={() => {setSortype('change')}} className="col">% Change<img alt='arrow' src={sortArrows} style={{height: '15px', marginLeft: '5px'}}/></th>
+        <th onClick={() => {setSortype('date')}} className="col">Date<img alt='arrow' src={sortArrows} className='arrowRotate' style={sortype === 'date' ? {transform: 'rotate(180deg)'} : {}}/></th>
+        <th onClick={() => {setSortype('high')}} className="col">High<img alt='arrow' src={sortArrows} className='arrowRotate' style={sortype === 'high' ? {transform: 'rotate(180deg)'} : {}}/></th>
+        <th onClick={() => {setSortype('low')}} className="col">Low<img alt='arrow' src={sortArrows} className='arrowRotate' style={sortype === 'low' ? {transform: 'rotate(180deg)'} : {}}/></th>
+        <th onClick={() => {setSortype('open')}} className="col">Open<img alt='arrow' src={sortArrows} className='arrowRotate' style={sortype === 'open' ? {transform: 'rotate(180deg)'} : {}}/></th>
+        <th onClick={() => {setSortype('close')}} className="col">Close<img alt='arrow' src={sortArrows} className='arrowRotate' style={sortype === 'close' ? {transform: 'rotate(180deg)'} : {}}/></th>
+        <th onClick={() => {setSortype('change')}} className="col">% Change<img alt='arrow' src={sortArrows} className='arrowRotate' style={sortype === 'change' ? {transform: 'rotate(180deg)'} : {}}/></th>
       </tr>
     </thead>
     <tbody>

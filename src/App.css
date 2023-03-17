@@ -93,3 +93,8 @@ color: #3c6688;
     transform: rotate(360deg);
   }
 }
+
+.arrowRotate {
+  height: 15px;
+  margin-left: 5px;
+}
