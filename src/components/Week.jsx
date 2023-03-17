@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { timeConverter, change, sortData } from '../utils/auxiliary';
+import { timeConverter, sortData, sortDataReverse } from '../utils/auxiliary';
 
 export default function Week({sortype}) {
 
@@ -19,8 +19,12 @@ export default function Week({sortype}) {
   }, [allperiods.week])
 
   useMemo(() => {
-    sortData(allperiods.minute, sortype, sorted, setSort)
-  }, [sortype, sorted])
+    if(sortype.sort){
+      if(sortype.isSorted){
+    sortData(allperiods.week, sortype.sort, sorted, setSort)
+    } else {
+    sortDataReverse(allperiods.week, sortype.sort, sorted, setSort)}}
+  }, [sortype, sorted]);
 
   useEffect(() => {
     if(allperiods.week){
@@ -37,7 +41,7 @@ export default function Week({sortype}) {
                 <td className="col">{el.Low}</td>
                 <td className="col">{el.Open}</td>
                 <td className="col">{el.Close}</td>
-                <td className="col" style={change(el) > 0 ? {color: 'green'}: {color: 'red'}}>{change(el)}</td>
+                <td className="col" style={el.calculated > 0 ? {color: 'green'}: {color: 'red'}}>{el.calculated}</td>
               </tr>
       ) : <tr><td colSpan={'6'} className={'message'}><p>We are waiting for upcomming data...</p></td></tr>}
       </>

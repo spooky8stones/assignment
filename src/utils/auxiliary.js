@@ -59,3 +59,37 @@ export const sortData = (data, type, state, stateSeter) => {
               break;
           }
         }}
+
+        export const sortDataReverse = (data, type, state, stateSeter) => {
+          if(data){
+            switch (type) {
+              case 'date':
+                stateSeter(state.sort((d1, d2) =>{
+                  return new Date(d1.Date) - new Date(d2.Date)}))
+                break;
+                case 'high':
+                  stateSeter(state.sort((h1, h2) =>{
+                    return h1.High - h2.High
+                  })) 
+                break;
+                case 'low':
+                  stateSeter(state.sort((l1, l2) =>{
+                    return l1.Low - l2.Low}))
+                break;
+                case 'open':
+                  stateSeter(state.sort((o1, o2) =>{
+                    return o1.Open - o2.Open}))
+                break;
+                case 'close':
+                  stateSeter(state.sort((c1, c2) =>{
+                    return c1.Close - c2.Close}))
+                break;
+                case 'change':
+                  stateSeter(state.sort((ch1, ch2) =>{
+                    return ch1.calculated - ch2.calculated}))
+                break;
+              default:
+                
+                break;
+            }
+          }}

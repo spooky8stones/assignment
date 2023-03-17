@@ -4,11 +4,13 @@ import { getMinute, getFiveMinutes, getHour, getWeek } from './thunkSlice';
 import { messageReceived } from './headerSlice';
 import { changePeriodHandler } from './thunkSlice';
 import Header from './components/Header';
+import Table from './components/Table';
+import Shedule from './components/Schedule';
 import './App.css';
 
 function App() {
 
-  const [tab, setTab] = useState(true)
+  const [tab, setTab] = useState('table')
   const [loaded, setLoaded] = useState(false)
 
   const data = useSelector(state => state.socket.data)
@@ -36,6 +38,20 @@ function App() {
     }
   }, [dispatch])
 
+  let tabData 
+
+  switch (tab) {
+    case 'table':
+      tabData = <Table/>
+      break;
+      case 'shedule':
+      tabData = <Shedule/>
+      break;
+    default:
+      tabData = <Table/>
+      break;
+  }
+
   return (
     <div className={'main'}>
       <div className={'container'}>
@@ -44,6 +60,7 @@ function App() {
           <Header setTab={setTab} data={data} />
 
         }
+        {loaded && tabData}
 
       </div>
     </div>

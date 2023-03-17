@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import Arrow from './Arrow';
 import { timeConverterHeader } from '../utils/auxiliary';
-import Table from './Table';
-import Shedule from './Schedule';
 
-export default function Header({data}) {
-
-const [tab, setTab] = useState(true)
+export default function Header({data, setTab}) {
 
 const historyHandler = () => {
-  setTab(true)
+  setTab('table')
 }
 
 const overviewHandler = () => {
-  setTab(false)
+  setTab('shedule')
 }
 
   return (
@@ -42,7 +38,6 @@ const overviewHandler = () => {
           </ul>
           <hr style={{border: 'none', height: '2px', backgroundColor: '#e5e5e5', margin: '0'}}/>
         </div>
-        {tab ? <Table/> : <Shedule/>}
         </>      
   )
 }

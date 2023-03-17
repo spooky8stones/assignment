@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { timeConverter, change, sortData } from '../utils/auxiliary';
+import { timeConverter, sortData, sortDataReverse } from '../utils/auxiliary';
 
 export default function Fiveminutes({sortype}) {
 
@@ -13,9 +13,13 @@ export default function Fiveminutes({sortype}) {
     }
   },[allperiods.fiveminutes])
 
-  useMemo(() =>{
-    sortData(allperiods.minute, sortype, sorted, setSort)
-  }, [sortype, sorted])
+  useMemo(() => {
+    if(sortype.sort){
+      if(sortype.isSorted){
+    sortData(allperiods.fiveminutes, sortype.sort, sorted, setSort)
+    } else {
+    sortDataReverse(allperiods.fiveminutes, sortype.sort, sorted, setSort)}}
+  }, [sortype, sorted]);
 
   return (
     <>
