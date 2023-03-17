@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { timeConverter, change, sortData } from '../utils/auxiliary';
 
@@ -13,7 +13,7 @@ export default function Fiveminutes({sortype}) {
     }
   },[allperiods.fiveminutes])
 
-  useEffect(() =>{
+  useMemo(() =>{
     sortData(allperiods.minute, sortype, sorted, setSort)
   }, [sortype, sorted])
 

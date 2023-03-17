@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { timeConverter, change, sortData } from '../utils/auxiliary';
 
@@ -18,7 +18,7 @@ export default function Week({sortype}) {
     setSort(lastHourData)}
   }, [allperiods.week])
 
-  useEffect(() => {
+  useMemo(() => {
     sortData(allperiods.minute, sortype, sorted, setSort)
   }, [sortype, sorted])
 

@@ -33,7 +33,7 @@ export default function Header() {
         dispatch(getMinute(changePeriodHandler('30',`${firstRequest}`,`${firstRequest}`)))
         dispatch(getFiveMinutes(changePeriodHandler('30',`${firstRequest}`,`${firstRequest}`)))
         dispatch(getHour(changePeriodHandler('30',`${secondRequest}`,`${secondRequest}`)))
-        dispatch(getWeek(changePeriodHandler('5',`${secondRequest}`,`${secondRequest}`)))
+        dispatch(getWeek(changePeriodHandler('30',`${secondRequest}`,`${secondRequest}`)))
         setLoaded(true)
       } 
   }, [dispatch])
