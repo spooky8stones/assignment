@@ -97,4 +97,5 @@ color: #3c6688;
 .arrowRotate {
   height: 15px;
   margin-left: 5px;
+  transform: rotate(180deg)
 }

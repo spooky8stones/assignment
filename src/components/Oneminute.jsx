@@ -6,6 +6,16 @@ export default function Oneminute({sortype}) {
 
   const [sorted, setSort] = useState([])
   const allperiods = useSelector(state => state.thunk.unitetime)
+  const [prevProps, setPrevProps] = useState('');
+
+  useEffect(() => {
+    setPrevProps(sortype);
+    //     if(prevProps === sortype){
+    //   setSort([...allperiods.minute])
+    // }
+  }, [sortype]);
+
+  console.log(prevProps)
 
 
   useEffect(() => {
