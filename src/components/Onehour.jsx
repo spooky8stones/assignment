@@ -15,7 +15,7 @@ export default function Onehour({sortype}) {
 
   useEffect(() =>{
     sortData(allperiods.minute, sortype, sorted, setSort)
-  }, [sortype, allperiods.hour])
+  }, [sortype, sorted])
 
   return (
     <>

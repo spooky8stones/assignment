@@ -15,7 +15,7 @@ export default function Fiveminutes({sortype}) {
 
   useEffect(() =>{
     sortData(allperiods.minute, sortype, sorted, setSort)
-  }, [sortype, allperiods.fiveminutes])
+  }, [sortype, sorted])
 
   return (
     <>

@@ -20,7 +20,7 @@ export default function Week({sortype}) {
 
   useEffect(() => {
     sortData(allperiods.minute, sortype, sorted, setSort)
-  }, [sortype, allperiods.week])
+  }, [sortype, sorted])
 
   useEffect(() => {
     if(allperiods.week){
