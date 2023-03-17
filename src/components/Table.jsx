@@ -33,7 +33,7 @@ export default function Table() {
   }
 
   return (
-    <div style={{width: '95%'}}>
+    <div>
     <Timemenu tab={setCurtab}/>
     <div className="container" style={{padding: '0'}}>
   <table className="table" style={{border:'1px solid #d1d1d1'}}>

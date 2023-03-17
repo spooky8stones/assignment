@@ -37,15 +37,15 @@ function App() {
   }, [dispatch])
 
   return (
-<div className={'main'}>
-    <div className={'container'}>
-      {loaded &&
+    <div className={'main'}>
+      <div className={'container'}>
+        {loaded &&
 
-          <Header setTab={setTab} data={data}/>
+          <Header setTab={setTab} data={data} />
 
-      }
+        }
 
-    </div>
+      </div>
     </div>
   );
 }
