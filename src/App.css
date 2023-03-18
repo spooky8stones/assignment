@@ -72,7 +72,7 @@
 
   }
 
-  thead> tr > th:hover {
+  thead > tr > th:hover {
 cursor: pointer;
 color: #3c6688;
   }

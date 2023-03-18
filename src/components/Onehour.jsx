@@ -32,7 +32,7 @@ export default function Onehour({sortype}) {
                 <td className="col">{el.Close}</td>
                 <td className="col" style={el.calculated > 0 ? {color: 'green'}: {color: 'red'}}>{el.calculated}</td>
               </tr>
-      ) : <tr><td colSpan={'6'} className={'message'}><p>We are waiting for upcomming data...</p></td></tr>}
+      ) : <tr><td colSpan={'6'} className={'message'}><div className='spinner'></div><p>We are waiting for upcomming data...</p></td></tr>}
       </>
   )
 }
