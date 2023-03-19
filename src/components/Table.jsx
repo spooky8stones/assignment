@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Oneminute from './Oneminute';
 import Fiveminutes from './Fiveminutes';

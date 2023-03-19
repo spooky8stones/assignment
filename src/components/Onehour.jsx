@@ -23,7 +23,7 @@ export default function Onehour({sortype}) {
 
   return (
     <>
-    {sorted !=0 ? sorted.map((el) => 
+    {sorted !==0 ? sorted.map((el) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>

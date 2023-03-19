@@ -29,7 +29,7 @@ export default function Oneminute({sortype}) {
 
   return (
     <>
-    {sorted.length != 0 ? sorted.map((el, i) => 
+    {sorted.length !== 0 ? sorted.map((el, i) => 
                 <tr key={Math.random()}>
                 <td className="col">{timeConverter(el.Date)}</td>
                 <td className="col">{el.High}</td>
